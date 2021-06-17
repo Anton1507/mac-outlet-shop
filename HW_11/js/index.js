@@ -11,32 +11,28 @@ $(document).ready(function(){
 let banerCart = () => {
     const buttonModOne = document.querySelector('#bt1');
     buttonModOne.onclick = () => {
-        localStorage.setItem(13, undefined ? 1 : Number(localStorage.getItem(13)) == 4 ? 4 : Number(localStorage.getItem(13)) + 1)
-        return new Basket()
+        inBasket(13)
     }
+        
 
     const buttonBanerTwo = document.querySelector('#bt2');
     buttonBanerTwo.onclick = () => {
-        localStorage.setItem(32, undefined ? 1 : Number(localStorage.getItem(32)) == 4 ? 4 : Number(localStorage.getItem(32)) + 1)
-        return new Basket()
+        inBasket(32)
     }
 
     const buttonBanerThree = document.querySelector('#bt3');
     buttonBanerThree.onclick = () => {
-        localStorage.setItem(29, undefined ? 1 : Number(localStorage.getItem(29)) == 4 ? 4 : Number(localStorage.getItem(29)) + 1)
-        return new Basket()
+        inBasket(29)
     }
 
     const buttonBanerFor = document.querySelector('#bt4');
     buttonBanerFor.onclick = () => {
-        localStorage.setItem(34, undefined ? 1 : Number(localStorage.getItem(34)) == 4 ? 4 : Number(localStorage.getItem(34)) + 1)
-        return new Basket
+        inBasket(34)
     }
 
     const buttonBanerFive = document.querySelector('#bt5');
     buttonBanerFive.onclick = () => {
-        localStorage.setItem(5, undefined ? 1 : Number(localStorage.getItem(5)) == 4 ? 4 : Number(localStorage.getItem(5)) + 1)
-        return new Basket
+        inBasket(5)
     }
 }
 
@@ -85,8 +81,7 @@ const modal = (data) => {
     divModalPrice.appendChild(buttonOnModal);
 
     buttonOnModal.onclick = () => {
-        localStorage.setItem(`${data.id}`, undefined ? 1 : Number(localStorage.getItem(`${data.id}`)) == 4 ? 4 : Number(localStorage.getItem(`${data.id}`)) + 1);
-        return new Basket();
+        inBasket(data.id)
     }
 
 
@@ -182,8 +177,7 @@ class Cards {
             divStat.onclick = () => { modal(item) };
 
             button_add.onclick = () => {
-                localStorage.setItem(`${item.id}`, undefined ? 1 : Number(localStorage.getItem(`${item.id}`)) == 4 ? 4 : Number(localStorage.getItem(`${item.id}`)) + 1);
-                return new Basket();
+               inBasket(item.id)
             };
 
 
@@ -498,6 +492,22 @@ filter_button = () => {
 }
 const fil_b = filter_button()
 //////////////////////////////////basket///////////////////////
+inBasket =(id)=>{
+    let num = Number(localStorage.getItem(id));
+        
+    console.log(num);
+
+    if (num == undefined){
+        localStorage.setItem(id,1)
+    }else{
+        if(num>=4){
+            return
+        }else{
+            localStorage.setItem(id,num+1)
+        }
+    }
+    return  new Basket()
+}
 class Basket {
 
     constructor() {
